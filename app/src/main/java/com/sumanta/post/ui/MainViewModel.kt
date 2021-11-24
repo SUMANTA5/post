@@ -36,4 +36,8 @@ constructor(private val mainRepository: MainRepository): ViewModel() {
         name: String,
         phoneNo: Long
     ) = mainRepository.setPhone(name, phoneNo)
+
+    fun delete(
+        userId: Int
+    )= mainRepository.delete(userId)
 }

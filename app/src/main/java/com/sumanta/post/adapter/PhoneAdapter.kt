@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.sumanta.post.util.Listener
 import javax.inject.Inject
 
 class PhoneAdapter
-@Inject
-constructor() : ListAdapter<Phone, PhoneAdapter.PhoneViewHolder>(Diff) {
+constructor(private val listener: Listener) : ListAdapter<Phone, PhoneAdapter.PhoneViewHolder>(Diff) {
 
 
     inner class PhoneViewHolder(private val binding: EachRowBinding) :
@@ -20,6 +20,9 @@ constructor() : ListAdapter<Phone, PhoneAdapter.PhoneViewHolder>(Diff) {
             binding.apply {
                 name.text = phone.name
                 phoneNo.text = phone.phoneNo.toString()
+                delete.setOnClickListener {
+                    listener.onClickDelete(adapterPosition, phone.userId)
+                }
             }
         }
     }
