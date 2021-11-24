@@ -1,10 +1,9 @@
 package com.sumanta.post.network
 
+import androidx.room.Delete
 import com.sumanta.post.model.Phone
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.Response
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -17,5 +16,10 @@ interface ApiService {
         @Field("name") name: String,
         @Field("phoneNo") phoneNo: Long
     ): Phone
+
+    @DELETE("/v1/phone/{userId}")
+    suspend fun delete(
+        @Path("userId") userId: Int
+    ): Response<Unit>
 
 }
